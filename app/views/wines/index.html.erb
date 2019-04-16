@@ -1,1 +1,21 @@
 <h1>This is a placeholder!</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vintage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @wines.each do |wine| %>
+    <tr>
+      <th scope="row"><%= wine.id %></th>
+      <td><%= wine.name %></td>
+      <td><%= wine.vintage %></td>
+
+    </tr>
+      <% end %>
+  </tbody>
+</table>
