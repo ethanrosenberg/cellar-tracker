@@ -3,15 +3,16 @@ class WinesController < ApplicationController
   before_action :find_wine, only: [:show, :edit, :update, :destroy]
 
   def index
-    @wines = Wine.all
+    @wines = User.find_by(id: current_user.id).wines
   end
 
   def show
 
   end
 
-  def cellar
-    @my_wines = Wine.all
+  def wine_library
+    @wine_library = Wine.all
+    render 'library'
     #binding.pry
   end
 

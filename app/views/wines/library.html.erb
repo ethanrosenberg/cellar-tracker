@@ -1,5 +1,5 @@
 <br>
-<h1>Most Popular Wines</h1>
+<h1>Wine Library of All Users!</h1>
 <br>
 <table class="table">
   <thead>
@@ -7,15 +7,18 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
+      <th scope="col">User Count</th>
       <th scope="col">Star Rating</th>
     </tr>
   </thead>
   <tbody>
-    <% @wines.each do |wine| %>
+    <% @wine_library.each do |wine| %>
     <tr>
       <th scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
+      <td><%= wine.users.size %></td>
+
 
 
 
