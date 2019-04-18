@@ -15,7 +15,10 @@ class WinesController < ApplicationController
   end
 
   def create
+    #binding.pry
     @wine = Wine.new(wine_params)
+    @wine.user = current_user
+
 
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
