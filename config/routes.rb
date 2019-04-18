@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/wines/cellar', to: 'wines#cellar'
+
     resources :wines, only: [:index, :new, :create, :show, :edit, :update]
 
   get '/register', to: 'registrations#new'

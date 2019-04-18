@@ -10,6 +10,11 @@ class WinesController < ApplicationController
 
   end
 
+  def cellar
+    @my_wines = Wine.all
+    #binding.pry
+  end
+
   def new
     @wine = Wine.new
 
@@ -19,9 +24,10 @@ class WinesController < ApplicationController
     #puts wine_params
     #@rating = Rating.create(star: wine_params[:rating])
     @wine = Wine.new(wine_params)
+    @wine.users << current_user
     #@wine.rating = @rating
-    binding.pry
-    @wine.user = current_user
+    #binding.pry
+    #@wine.user = current_user
 
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
