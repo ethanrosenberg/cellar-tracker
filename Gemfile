@@ -7,6 +7,9 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
 gem 'bcrypt'
 gem 'pry', '~> 0.12.2'
+gem 'omniauth-github'
+gem 'omniauth'
+gem 'dotenv-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
