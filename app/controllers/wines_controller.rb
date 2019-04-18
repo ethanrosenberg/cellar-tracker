@@ -1,4 +1,5 @@
 class WinesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_wine, only: [:show, :edit, :update, :destroy]
 
   def index

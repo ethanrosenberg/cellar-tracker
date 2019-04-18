@@ -1,3 +1,5 @@
 <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
 <center><h2>Login To Your Account</h2></center>
+<br>
+<center><h5><%= link_to('Log in with Github!', '/auth/github') %></h5></center><br>
 <%= render 'form', user: @user %>
