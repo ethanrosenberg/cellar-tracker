@@ -19,7 +19,6 @@ class WinesController < ApplicationController
     @wine = Wine.new(wine_params)
     @wine.user = current_user
 
-
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
     else

@@ -1,2 +1,23 @@
-<h1><%= @wine.name %></h1>
-<h1><%= @wine.vintage %></h1>
+
+<br>
+<h2><%= @wine.name %> - <%= @wine.vintage %></h2>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vintage</th>
+      <th scope="col">User ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @wine.id %></th>
+      <td><%= @wine.name %></td>
+      <td><%= @wine.vintage %></td>
+      <td><%= @wine.user_id %></td>
+
+    </tr>
+  </tbody>
+</table>

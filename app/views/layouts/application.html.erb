@@ -52,15 +52,13 @@
                 </div>
               </li>
             </ul>
-            <% end %>
-
-
-
-           <% if logged_in? %>
+            <% else %>
             <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item"><a class="nav-link" href="#"><%= current_user.username %></a></li>
+              <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
             </ul>
             <% end %>
+
+
          </div>
        </nav>
 
