@@ -1,9 +1,13 @@
 <h1>Add a new wine</h1>
 
 <%= form_for(@wine) do |f| %>
+<div class="form-group">
   <label>Name</label><br>
   <%= f.text_field :name %><br>
+</div>
+<div class="form-group">
   <label>Vintage</label><br>
   <%= f.number_field :vintage %><br>
-  <%= f.submit %>
+</div>
+  <%= f.submit "Add New Wine", class:'btn btn-primary' %>
 <% end %>
