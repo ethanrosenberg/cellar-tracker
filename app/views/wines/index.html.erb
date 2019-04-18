@@ -1,11 +1,13 @@
-<h1>This is a placeholder!</h1>
-
+<br>
+<h1>Library of Wines</h1>
+<br>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
+      <th scope="col">User ID</th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +16,7 @@
       <th scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
+      <td><%= wine.user_id %></td>
 
     </tr>
       <% end %>
