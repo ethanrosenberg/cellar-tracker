@@ -16,8 +16,11 @@ class WinesController < ApplicationController
   end
 
   def create
-    #binding.pry
+    #puts wine_params
+    #@rating = Rating.create(star: wine_params[:rating])
     @wine = Wine.new(wine_params)
+    #@wine.rating = @rating
+    binding.pry
     @wine.user = current_user
 
     if @wine.save
