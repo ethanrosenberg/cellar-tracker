@@ -24,14 +24,22 @@ class WinesController < ApplicationController
   def create
     #puts wine_params
     #@rating = Rating.create(star: wine_params[:rating])
+    #binding.pry
+
     @wine = Wine.new(wine_params)
-    @wine.users << current_user
+    #rating = Rating.new(wine_params(:ratings))
+    @wine.users << current_user if @wine.users.include?(current_user)
+    #@wine.ratings << rating
+
     #@wine.rating = @rating
     #binding.pry
     #@wine.user = current_user
 
+    binding.pry
+
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
+      #binding.pry
     else
       render 'new'
     end

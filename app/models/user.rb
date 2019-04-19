@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :users_wines
   has_many :wines, through: :users_wines
 
+  has_many :ratings
+
 
   def self.find_or_create_by_omniauth(auth)
     self.where(:username => auth[:info][:nickname]).first_or_create do |user|

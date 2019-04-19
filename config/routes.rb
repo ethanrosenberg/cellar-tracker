@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :ratings
+
+  #resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/wines/library', to: 'wines#wine_library'
 
