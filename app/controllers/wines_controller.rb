@@ -24,6 +24,7 @@ class WinesController < ApplicationController
   def create
     @wine = Wine.create(wine_params)
     @wine.users << current_user unless @wine.users.include?(current_user)
+    binding.pry
 
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
