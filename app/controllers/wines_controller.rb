@@ -3,7 +3,7 @@ class WinesController < ApplicationController
   before_action :find_wine, only: [:show, :edit, :update, :destroy]
 
   def index
-    @wines = User.find_by(id: current_user.id).wines
+    @wines = current_user.wines
   end
 
   def show
@@ -22,24 +22,11 @@ class WinesController < ApplicationController
   end
 
   def create
-    #puts wine_params
-    #@rating = Rating.create(star: wine_params[:rating])
-    #binding.pry
-
-    @wine = Wine.new(wine_params)
-    #rating = Rating.new(wine_params(:ratings))
-    @wine.users << current_user if @wine.users.include?(current_user)
-    #@wine.ratings << rating
-
-    #@wine.rating = @rating
-    #binding.pry
-    #@wine.user = current_user
-
-    binding.pry
+    @wine = Wine.create(wine_params)
+    @wine.users << current_user unless @wine.users.include?(current_user)
 
     if @wine.save
       redirect_to @wine, notice: "Successfully added a new wine!"
-      #binding.pry
     else
       render 'new'
     end
