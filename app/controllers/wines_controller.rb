@@ -27,7 +27,7 @@ class WinesController < ApplicationController
 
     @wine = Wine.create(wine_params(:name, :vintage))
     @wine.users << current_user unless @wine.users.include?(current_user)
-    binding.pry
+    #binding.pry
     @rating = Rating.new(star: wine_params(:ratings)[:ratings])
     @rating.wine_id = @wine.id
     @rating.user_id = current_user.id
