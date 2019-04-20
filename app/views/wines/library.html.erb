@@ -18,6 +18,7 @@
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
       <td><%= wine.users.size %></td>
+      <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
 
 
 

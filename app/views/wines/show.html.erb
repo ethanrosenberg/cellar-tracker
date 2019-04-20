@@ -8,7 +8,6 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
-      <th scope="col">User ID</th>
       <th scope="col">Star Rating</th>
     </tr>
   </thead>
@@ -17,8 +16,7 @@
       <th scope="row"><%= @wine.id %></th>
       <td><%= @wine.name %></td>
       <td><%= @wine.vintage %></td>
-
-
+      <td><%= @wine.ratings.find_by(user_id: current_user.id).star %></td>
     </tr>
   </tbody>
 </table>

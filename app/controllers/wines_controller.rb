@@ -3,7 +3,9 @@ class WinesController < ApplicationController
   before_action :find_wine, only: [:show, :edit, :update, :destroy]
 
   def index
+    #binding.pry
     @wines = current_user.wines
+    #
   end
 
   def show
