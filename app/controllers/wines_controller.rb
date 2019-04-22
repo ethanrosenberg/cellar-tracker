@@ -31,7 +31,7 @@ class WinesController < ApplicationController
                         wine_params[:users_wines_attributes]["purchase_date(3i)"].to_i,
                         wine_params[:users_wines_attributes]["purchase_date(4i)"].to_i,
                         wine_params[:users_wines_attributes]["purchase_date(5i)"].to_i)
-    binding.pry
+    #binding.pry
 
     #@wine = Wine.create(wine_params(:name, :vintage))
     @wine = Wine.create(name: wine_params[:name], vintage: wine_params[:vintage])

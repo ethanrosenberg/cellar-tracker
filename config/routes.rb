@@ -6,6 +6,14 @@ Rails.application.routes.draw do
 
   resources :wines, only: [:index, :new, :create, :show, :edit, :update]
 
+  #testing
+  resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :ratings, only: [:new, :create, :show, :edit, :update]
+  end
+
+  #end testing
+
+
   get '/register', to: 'registrations#new'
   post '/register', to: 'registrations#create'
 
