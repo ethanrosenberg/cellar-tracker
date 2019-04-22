@@ -4,7 +4,12 @@ class RatingsController < ApplicationController
 
   def show
 
-    @rating = Rating.find_by(id: params[:id], wine_id: params[:wine_id])
+    #binding.pry
+    #@rating = User.ratings.find_by(wine_id: params[:wine_id])
+    @rating = Rating.find_by(wine_id: params[:wine_id], id: params[:id])
+    @wine = Wine.find_by(id: params[:wine_id])
+
+
 
     #binding.pry
 
