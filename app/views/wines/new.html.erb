@@ -12,7 +12,17 @@
 </div>
 <div class="form-group">
   <label>Rating</label><br>
-  <%= f.number_field :ratings %><br>
+  <%= f.fields_for :ratings do |f| %>
+    <%= f.number_field :star %>
+  <% end %><br>
 </div>
+
+<div class="form-group">
+  <label>Purchase Date</label><br>
+  <%= f.fields_for :users_wines_attributes do |g| %>
+    <%= g.date_select :purchase_date %>
+  <% end %>
+</div>
+
   <%= f.submit "Add New Wine", class:'btn btn-primary' %>
 <% end %>

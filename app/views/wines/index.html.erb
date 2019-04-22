@@ -7,6 +7,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
+      <th scope="col">Purchase Date</th>
       <th scope="col">My Rating</th>
     </tr>
   </thead>
@@ -16,7 +17,7 @@
       <th scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
-
+      <td><%= UsersWine.find_by(user_id: current_user.id, wine_id: wine).purchased unless UsersWine.find_by(user_id: current_user.id, wine_id: wine).purchase_date.nil?  %></td>
       <td><%= wine.ratings.map {|f| f.star }.join ', ' %></td>
 
 

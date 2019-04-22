@@ -4,6 +4,9 @@ class Wine < ApplicationRecord
   has_many :users, through: :users_wines
   #
   has_many :ratings
+  accepts_nested_attributes_for :users_wines
+
+  
 
 
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/wines/library', to: 'wines#wine_library'
 
-    resources :wines, only: [:index, :new, :create, :show, :edit, :update]
+  resources :wines, only: [:index, :new, :create, :show, :edit, :update]
 
   get '/register', to: 'registrations#new'
   post '/register', to: 'registrations#create'
