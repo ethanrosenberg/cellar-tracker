@@ -3,4 +3,7 @@ class Rating < ApplicationRecord
   belongs_to :wine
 
   #testing
+
+  
+
 end

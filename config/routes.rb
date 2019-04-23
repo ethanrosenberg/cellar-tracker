@@ -2,14 +2,19 @@ Rails.application.routes.draw do
 
   #resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/wines/top_rated', to: 'ratings#top_rated'
+
   get '/wines/library', to: 'wines#wine_library'
+
+  resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :ratings, only: [:show]
+  end
 
   resources :wines, only: [:index, :new, :create, :show, :edit, :update]
 
   #testing
-  resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
-    resources :ratings, only: [:new, :create, :show, :edit, :update]
-  end
+
 
   #end testing
 

@@ -4,9 +4,13 @@ class WinesController < ApplicationController
 
   def index
     #binding.pry
+    #
     @wines = current_user.wines
+    @ratings = current_user.ratings
     #
   end
+
+
 
   def show
 

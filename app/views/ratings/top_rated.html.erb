@@ -1,0 +1,27 @@
+<h1>Top Rated Wines</h1>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vintage</th>
+      <th scope="col">User Count</th>
+      <th scope="col">Average Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @wine_ratings.each do |rating| %>
+    <% wine = Wine.find_by(id: rating.wine_id) %>
+    <% if !wine.nil? %>
+    <tr>
+      <th scope="row"><%= wine.id %></th>
+      <td><%= wine.name %></td>
+      <td><%= wine.vintage %></td>
+      <td><%= wine.users.size %></td>
+      <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
+    </tr>
+    <% end %>
+      <% end %>
+  </tbody>
+</table>

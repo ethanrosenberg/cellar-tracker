@@ -9,6 +9,7 @@
       <th scope="col">Vintage</th>
       <th scope="col">Purchase Date</th>
       <th scope="col">My Rating</th>
+      <th scope="col">View/Edit Rating</th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +22,9 @@
       <td><%= wine.ratings.map {|f| f.star }.join ', ' %></td>
 
 
+    <td><%= link_to "View Rating", wine_rating_path(wine, Wine.find_rating(wine.id, current_user.id)) %></td>
 
-    </tr>
+
       <% end %>
   </tbody>
 </table>
