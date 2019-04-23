@@ -17,7 +17,7 @@ class Wine < ApplicationRecord
   end
 
   def self.top_rated_wines
-   Rating.all.where("star >= 98").limit(25)
+   Rating.all.where("star >= 90").limit(25)
  end
 
 
