@@ -23,9 +23,7 @@ class Wine < ApplicationRecord
     ratings.build(star: ratings_hash[:star], user: ratings_hash[:user])
   end
 
-  def users_wines_attributes=(users_wines_hash)
-    users_wines.build(purchase_date: users_wines_hash[:purchase_date], user: users_wines_hash[:user])
-  end
+
 
   def self.top_rated_wines
    Rating.all.where("star >= 90").limit(25)

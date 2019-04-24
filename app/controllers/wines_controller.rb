@@ -40,23 +40,29 @@ class WinesController < ApplicationController
 
     #binding.pry
 
+
+
     #@wine = Wine.create(wine_params(:name, :vintage))
-    current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
+    @new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
       ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
 
       current_user.save
-      #,
-      #users_wines_attributes: {purchase_date: @somedate, user: current_user})
-    #  binding.pry
 
 
 
-    #binding.pry
+      @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @new_wine.id)
+      #@new_wine = UsersWine.build(users_wines_attributes: {purchase_date: @somedate, user: current_user})
+      #@current_user_wine.update_attribute(user_id: current_user.id, purchase_date: @somedate)
+      @current_user_wine.update_attribute(:purchase_date, @somedate)
 
-      @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: current_user.wines.last)
 
-      binding.pry
-      @current_user_wine.purchase_date = @somedate
+
+
+      #
+
+    #  @current_user_wine.purchase_date = wine_params[:users_wines_attributes]
+
+
 
       #@curent_user_wines.update_attribute(user_id: current_user.id, wine_id: current_user.wines.last, purchase_date: @somedate)
 
@@ -72,29 +78,8 @@ class WinesController < ApplicationController
     #@wine.ratings.build(star: wine_params[:ratings][:star], wine_id: @wine.id, user_id: current_user.id)
 
 
-
-
-
-    #binding.pry
-    #binding.pry
-
-    #binding.pry
-
-    #@wine.ratings.build(star: wine_params(:ratings)[:ratings])
-
-    #below works
-    #@rating = Rating.new(star: wine_params(:ratings)[:ratings])
-    #@rating.wine_id = @wine.id
-    #@rating.user_id = current_user.id
-    #@rating.save
-    #@wine.ratings << @rating
-    #above works
-    #binding.pry
-
-
-    if current_user.save && current_user_wines.save
-      @wine = current_user.wines.last
-      redirect_to @wine, notice: "Successfully added a new wine!"
+    if current_user.save && @current_user_wine.save
+      redirect_to @new_wine, notice: "Successfully added a new wine!"
     else
       render 'new'
     end
