@@ -21,4 +21,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless current_user
   end
 
+  #ActiveRecord::Base.connection.execute("DELETE  from users_wines")
+
+
 end

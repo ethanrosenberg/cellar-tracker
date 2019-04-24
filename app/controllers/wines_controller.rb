@@ -6,6 +6,8 @@ class WinesController < ApplicationController
     #binding.pry
     #
     @wines = current_user.wines
+
+    #binding.pry
     @ratings = current_user.ratings
     #
   end
