@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/wines/library', to: 'wines#wine_library'
 
   resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
-    resources :ratings, only: [:show]
+    resources :ratings, only: [:show, :new, :create]
   end
 
   resources :wines, only: [:index, :new, :create, :show, :edit, :update]

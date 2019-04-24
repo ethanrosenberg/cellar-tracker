@@ -1,12 +1,18 @@
 class RatingsController < ApplicationController
 
-  before_action :authenticate_user!, except: :highest_rated
+  before_action :authenticate_user!, except: :top_rated
 
   def show
     #@rating = User.ratings.find_by(wine_id: params[:wine_id])
     @rating = Rating.find_by(id: params[:id])
     @wine = Wine.find_by(id: params[:wine_id])
     #binding.pry
+  end
+
+  def new
+    #binding.pry
+    @rating = Rating.new
+    #@wine = Wine.
   end
 
   def top_rated
