@@ -36,9 +36,29 @@ class WinesController < ApplicationController
                         wine_params[:users_wines_attributes]["purchase_date(4i)"].to_i,
                         wine_params[:users_wines_attributes]["purchase_date(5i)"].to_i)
 
+
+
+    #binding.pry
+
     #@wine = Wine.create(wine_params(:name, :vintage))
     current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
       ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
+
+      current_user.save
+      #,
+      #users_wines_attributes: {purchase_date: @somedate, user: current_user})
+    #  binding.pry
+
+
+
+    #binding.pry
+
+      @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: current_user.wines.last)
+
+      binding.pry
+      @current_user_wine.purchase_date = @somedate
+
+      #@curent_user_wines.update_attribute(user_id: current_user.id, wine_id: current_user.wines.last, purchase_date: @somedate)
 
     #@test = UsersWine.create({purchase_date: @somedate, wine: @wine, user: current_user})
     #@test = UsersWine.create({purchase_date: wine_params(:users_wines_attributes), wine: @wine, user: current_user})
@@ -72,7 +92,7 @@ class WinesController < ApplicationController
     #binding.pry
 
 
-    if current_user.save
+    if current_user.save && current_user_wines.save
       @wine = current_user.wines.last
       redirect_to @wine, notice: "Successfully added a new wine!"
     else
