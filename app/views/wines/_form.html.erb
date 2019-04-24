@@ -20,7 +20,7 @@
 <div class="form-group">
   <label>Rating</label><br>
   <%= f.fields_for :ratings_attributes do |f| %>
-    <%= f.number_field :star %>
+    <%= f.number_field :star, :value => Rating.find_by(wine_id: @wine.id, user_id: current_user.id).star %>
   <% end %><br>
 </div>
 
