@@ -8,7 +8,11 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
-      <th scope="col">Star Rating</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Purchase Date</th>
+
+      <th scope="col">View Rating</th>
+      <th scope="col">Edit Wine</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +20,11 @@
       <th scope="row"><%= @wine.id %></th>
       <td><%= @wine.name %></td>
       <td><%= @wine.vintage %></td>
-      <
+      <td><%= Rating.find_by(user_id: current_user.id, wine_id: @wine.id) %></td>
+      <td><%= UsersWine.find_date_purchased(@wine, current_user) %></td>
+    <td><%= link_to "View Rating", wine_rating_path(@wine, Wine.find_rating(@wine.id, current_user.id)) %></td>
+    <td><%= link_to "Edit Wine", edit_wine_path(@wine) %></td>
+
     </tr>
   </tbody>
 </table>
