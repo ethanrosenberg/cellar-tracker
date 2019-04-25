@@ -2,6 +2,8 @@ class Rating < ApplicationRecord
   belongs_to :user
   belongs_to :wine
 
+  scope :top_rated, -> { where("star > 90") }
+
   #testing
 
 def self.get_rating(wine, current_user)
