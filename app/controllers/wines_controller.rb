@@ -41,7 +41,8 @@ class WinesController < ApplicationController
     #@new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
       #ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
 
-      @new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage])
+      #@new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage])
+      @new_wine = Wine.new(name: wine_params[:name], vintage: wine_params[:vintage])
       @new_wine.save
       @new_rating = Rating.new(star: wine_params[:ratings_attributes][:star], user_id: current_user.id, wine_id: @new_wine.id)
       @new_rating.save
@@ -51,14 +52,14 @@ class WinesController < ApplicationController
 
 
       #@current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @new_wine.id).inspect
-      @new_users_wine = UsersWine.new(purchase_date: @somedate, user: current_user, wine: @new_wine)
+      @new_users_wine = UsersWine.new(purchase_date: @somedate, user_id: current_user.id, wine_id: @new_wine.id)
       @new_users_wine.save
       #@current_user_wine.update_attribute(user_id: current_user.id, purchase_date: @somedate)
       #@current_user_wine.update_attribute(:purchase_date, @somedate)
 
 
 
-    if current_user.save
+    if @new_wine.save
       redirect_to @new_wine, notice: "Successfully added a new wine!"
     else
       render 'new'
@@ -73,6 +74,8 @@ class WinesController < ApplicationController
 
 
     @wine = Wine.find(params[:id])
+
+    #binding.pry
    #if @wine.update(name: wine_params[:name], vintage: wine_params[:vintage])
 
      @date = DateTime.new(wine_params[:users_wines_attributes]["purchase_date(1i)"].to_i,
@@ -81,7 +84,6 @@ class WinesController < ApplicationController
                          wine_params[:users_wines_attributes]["purchase_date(4i)"].to_i,
                          wine_params[:users_wines_attributes]["purchase_date(5i)"].to_i)
 
-                         binding.pry
 
 
         @wine.update(name: wine_params[:name], vintage: wine_params[:vintage])
@@ -90,7 +92,10 @@ class WinesController < ApplicationController
         @current_rating = Rating.find_by(user_id: current_user.id, wine_id: @wine.id)
         @current_rating.update_attribute(:star, wine_params[:ratings_attributes][:star])
 
+        #binding.pry
+
          @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @wine.id)
+
          @current_user_wine.update_attribute(:purchase_date, @date)
 
 

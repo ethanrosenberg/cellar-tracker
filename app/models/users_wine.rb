@@ -1,11 +1,11 @@
 class UsersWine < ApplicationRecord
-self.primary_key = :user_id
+#self.primary_key = :user_id
   belongs_to :user
   belongs_to :wine
 
   def self.find_date_purchased(wine, current_user)
-
-    purchased = self.where(user_id: current_user.id, wine_id: wine.id).last.purchase_date.strftime("%B %e, %Y")
+    #binding.pry
+    purchased = self.find_by(user_id: current_user.id, wine_id: wine.id).purchase_date.strftime("%B %e, %Y")
     if purchased
       purchased
     else

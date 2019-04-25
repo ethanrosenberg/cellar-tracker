@@ -3,6 +3,7 @@ class Wine < ApplicationRecord
   has_many :users_wines
   has_many :users, through: :users_wines
   #, dependent: :destroy
+  #
   has_many :ratings
 
   accepts_nested_attributes_for :users_wines
