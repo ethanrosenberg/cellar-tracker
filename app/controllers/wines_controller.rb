@@ -38,28 +38,27 @@ class WinesController < ApplicationController
                         wine_params[:users_wines_attributes]["purchase_date(4i)"].to_i,
                         wine_params[:users_wines_attributes]["purchase_date(5i)"].to_i)
 
+    #@new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
+      #ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
+
+      @new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage])
+      @new_wine.save
+      @new_rating = Rating.new(star: wine_params[:ratings_attributes][:star], user_id: current_user.id, wine_id: @new_wine.id)
+      @new_rating.save
 
 
-    #binding.pry
+      #current_user.save
 
 
-
-    #@wine = Wine.create(wine_params(:name, :vintage))
-    @new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage],
-      ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
-
-      current_user.save
-
-
-
-      @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @new_wine.id)
-      #@new_wine = UsersWine.build(users_wines_attributes: {purchase_date: @somedate, user: current_user})
+      #@current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @new_wine.id).inspect
+      @new_users_wine = UsersWine.new(purchase_date: @somedate, user: current_user, wine: @new_wine)
+      @new_users_wine.save
       #@current_user_wine.update_attribute(user_id: current_user.id, purchase_date: @somedate)
-      @current_user_wine.update_attribute(:purchase_date, @somedate)
+      #@current_user_wine.update_attribute(:purchase_date, @somedate)
 
 
 
-    if current_user.save && @current_user_wine.save
+    if current_user.save
       redirect_to @new_wine, notice: "Successfully added a new wine!"
     else
       render 'new'
@@ -82,18 +81,21 @@ class WinesController < ApplicationController
                          wine_params[:users_wines_attributes]["purchase_date(4i)"].to_i,
                          wine_params[:users_wines_attributes]["purchase_date(5i)"].to_i)
 
+                         binding.pry
 
-      if @wine.update(name: wine_params[:name], vintage: wine_params[:vintage],
-         ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
 
-         @wine.save
+        @wine.update(name: wine_params[:name], vintage: wine_params[:vintage])
+        @wine.save
+
+        @current_rating = Rating.find_by(user_id: current_user.id, wine_id: @wine.id)
+        @current_rating.update_attribute(:star, wine_params[:ratings_attributes][:star])
 
          @current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @wine.id)
          @current_user_wine.update_attribute(:purchase_date, @date)
-         @current_user_wine.save
 
 
 
+     if @wine.save
      redirect_to @wine
    else
      redirect_to edit_wine_path

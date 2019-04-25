@@ -15,6 +15,10 @@ class RatingsController < ApplicationController
     #@wine = Wine.
   end
 
+  def update
+
+  end
+
   def top_rated
 
     #@test = Rating.select(:star).map(&:star).uniq
