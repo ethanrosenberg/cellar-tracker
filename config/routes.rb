@@ -2,12 +2,16 @@ Rails.application.routes.draw do
 
   #resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    root "wines#search"
+
+    get '/search', to: 'wines#search_wines'
+
 
 
     get '/wines/top_rated', to: 'ratings#top_rated'
 
     get '/wines/library', to: 'wines#wine_library'
-    
+
   resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
     resources :ratings, only: [:show, :new, :create]
   end
@@ -33,5 +37,5 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback' => 'sessions#create'
 
-  root "wines#index"
+
 end

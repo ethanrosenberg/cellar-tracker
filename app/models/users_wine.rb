@@ -9,7 +9,6 @@ class UsersWine < ApplicationRecord
       #DateTime.new("2018-04-25 00:00:00")
       self.find_by(user_id: current_user.id, wine_id: wine.id).purchase_date
 
-
     end
 
     #.strftime("%B %e, %Y")

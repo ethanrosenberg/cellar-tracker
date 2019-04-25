@@ -113,6 +113,10 @@ class WinesController < ApplicationController
 
   end
 
+  def search_wines
+
+  end
+
   private
 
   def wine_params
