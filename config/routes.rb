@@ -2,10 +2,14 @@ Rails.application.routes.draw do
 
   #resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    root "wines#search"
+    #root "wines#search_wines"
 
-    get '/search', to: 'wines#search_wines'
-
+    # '/search', to: 'wines#search'
+    #g#et '/search', to: 'wines#search_wines'
+    get '/search' => 'pages#search', :as => 'search_page'
+    get '/results' => 'pages#results', :as => 'results_page'
+    #get '/results' => 'pages#results', :as => 'results_page'
+    #get '/search' => 'pages#search', :as => 'search_page'
 
 
     get '/wines/top_rated', to: 'ratings#top_rated'

@@ -113,9 +113,8 @@ class WinesController < ApplicationController
 
   end
 
-  def search_wines
 
-  end
+
 
   private
 

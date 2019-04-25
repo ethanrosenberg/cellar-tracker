@@ -23,27 +23,17 @@
 
 }
 </style>
-
-<%= form_tag(search_page_path, :method => "get",
-    class: 'navbar-form navbar-left') do %>
-  <div class="input-group">
-    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
-    <div class="input-group-btn">
-      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
-    </div>
-  </div>
-<% end %>
-
 <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <%= form_tag("/search", method: "get", class: "card card-sm") do %>
+                            <%= form_tag("/results", method: "get", class: "card card-sm") do %>
                                 <div class="card-body row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <i class="fas fa-search h4 text-body"></i>
                                     </div>
                                     <!--end of col-->
                                     <div class="col">
-                                      <%= text_field_tag(:q, "", class: 'form-control form-control-lg form-control-borderless searchbox') %>
+
+                                      <%= search_field_tag :search, params[:search], placeholder: "Enter a wine name...", class: "form-control form-control-lg form-control-borderless searchbox" %>
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">

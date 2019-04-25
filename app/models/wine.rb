@@ -17,7 +17,6 @@ class Wine < ApplicationRecord
     else
       Rating.find_by(wine_id: wine_id, user_id: user_id).id
     end
-
   end
 
   def ratings_attributes=(ratings_hash)
