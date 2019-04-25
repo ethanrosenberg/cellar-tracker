@@ -5,13 +5,14 @@ class UsersWine < ApplicationRecord
 
   def self.find_date_purchased(wine, current_user)
     #binding.pry
-    purchased = self.find_by(user_id: current_user.id, wine_id: wine.id).purchase_date.strftime("%B %e, %Y")
-    if purchased
-      purchased
-    else
-      "No Purchase Date Added..."
+    if !wine.id.nil?
+      #DateTime.new("2018-04-25 00:00:00")
+      self.find_by(user_id: current_user.id, wine_id: wine.id).purchase_date
+
+
     end
 
+    #.strftime("%B %e, %Y")
     #.nil? ? "No Purchase Date" : self.find_by(user_id: current_user.id, wine_id: wine).purchase_date.nil?
   end
 

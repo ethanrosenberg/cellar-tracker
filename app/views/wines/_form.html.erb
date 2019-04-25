@@ -27,7 +27,7 @@
 <div class="form-group">
   <label>Purchase Date</label><br>
   <%= f.fields_for :users_wines_attributes do |g| %>
-    <%= g.date_select :purchase_date %>
+    <%= g.date_select :purchase_date, :selected => UsersWine.find_date_purchased(@wine, current_user) %>
   <% end %>
 </div>
 
