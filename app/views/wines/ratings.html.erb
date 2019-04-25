@@ -1,0 +1,27 @@
+<br>
+<h1>Ratings</h1>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vintage</th>
+      <th scope="col">Rating</th>
+      <th scope="col">View/Edit Rating</th>
+      <th scope="col">View/Edit Wine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ratings.each do |rating| %>
+    <tr>
+      <% @rating_wine = Wine.find_by(id: rating.wine_id) %>
+      <th scope="row"><%= @rating_wine.id %></th>
+      <td><%= @rating_wine.name %></td>
+      <td><%= @rating_wine.vintage %></td>
+      <td><%= rating.star %></td>
+    <td><%= link_to "View Rating", wine_rating_path(@rating_wine, rating) %></td>
+    <td><%= link_to "View/Edit Wine", edit_wine_path(@rating_wine) %></td>
+      <% end %>
+  </tbody>
+</table>

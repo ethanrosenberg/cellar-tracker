@@ -107,6 +107,12 @@ class WinesController < ApplicationController
    end
   end
 
+  def ratings
+
+    @ratings = Rating.all
+
+  end
+
   private
 
   def wine_params

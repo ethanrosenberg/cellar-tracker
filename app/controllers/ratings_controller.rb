@@ -19,6 +19,10 @@ class RatingsController < ApplicationController
 
   end
 
+  def ratings
+
+  end
+
   def top_rated
 
     #@test = Rating.select(:star).map(&:star).uniq
