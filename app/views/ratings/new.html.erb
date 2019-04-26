@@ -3,8 +3,7 @@
 <div class="form-group">
   <label>Wine Name</label><br>
   <% wines_arr = Wine.all.map { |wine| [wine.name, wine.id] } %>
-
-    <%= f.select :wine_id, options_for_select(wines_arr), include_blank: true, :prompt => 'Select Wine Name' %>
+    <%= f.select :wine_id, options_for_select(wines_arr, selected: params[:wine_id] || nil), include_blank: true, :prompt => 'Select Wine Name' %>
 </div>
 <div class="form-group">
   <label>Rating</label><br>
