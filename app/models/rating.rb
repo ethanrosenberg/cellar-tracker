@@ -17,13 +17,13 @@ def self.get_rating(wine, current_user)
 
 end
 
-#def star
-#  star
-#end
-
-#def star=(star)
-  #star.to_i
-#nd
-
+def self.get_average_wine_ratings(wine_ratings_arr)
+  sum = 0
+  wine_ratings_arr.each do |rating|
+    sum += rating
+  end
+#binding.pry
+  sum / wine_ratings_arr.size
+end
 
 end

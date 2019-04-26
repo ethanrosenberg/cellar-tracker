@@ -3,10 +3,11 @@ class RatingsController < ApplicationController
   before_action :authenticate_user!, except: :top_rated
 
   def show
+#raise params.inspect
     #binding.pry
     #@rating = User.ratings.find_by(wine_id: params[:wine_id])
-    @rating = Rating.find_by(id: params[:wine_id])
-    @wine = Wine.find_by(id: params[:id])
+    @rating = Rating.find_by(id: params[:id])
+    @wine = Wine.find_by(id: params[:wine_id])
     #binding.pry
   end
 
@@ -18,13 +19,15 @@ class RatingsController < ApplicationController
 
   def create
 
-
+#binding.pry
 
     @rating = Rating.create(star: rating_params[:star], user_id: current_user.id, wine_id: rating_params[:wine_id])
-    @wine = Wine.find(@rating.wine_id)
+    @rating.save
+    #binding.pry
+    @wine = Wine.find(rating_params[:wine_id])
 
     if @rating.save
-      redirect_to wine_rating_path(@rating.id, @wine.id), notice: "Successfully added a new rating!"
+      redirect_to wine_rating_path(@wine.id, @rating.id), notice: "Successfully added a new rating!"
     else
       render 'new'
     end
@@ -85,7 +88,7 @@ class RatingsController < ApplicationController
 
     def rating_params
       #params.require(:wine).permit(*args)
-      params.require(:rating).permit(:star, :user_id, :wine_id)
+      params.require(:rating).permit(:star, :wine_id)
 
     end
 end

@@ -20,7 +20,10 @@
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
       <td><%= wine.users.size %></td>
-      <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
+      <% wine_ratings_arr = wine.ratings.map {|rating| rating.star } %>
+
+      <td><%= Rating.get_average_wine_ratings(wine_ratings_arr) %></td>
+      <td><% wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
     </tr>
     <% end %>
       <% end %>
