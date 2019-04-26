@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :ratings, only: [:show, :new, :create]
 
 
-  get '/wines/:user_id/ratings', to: 'wines#ratings'
+  get '/wines/:wine_id/ratings', to: 'ratings#ratings'
 
 
   #testing

@@ -4,6 +4,7 @@ class Rating < ApplicationRecord
 
   scope :top_rated, -> { where("star > 90") }
 
+
   #testing
 
 def self.get_rating(wine, current_user)
@@ -15,6 +16,10 @@ def self.get_rating(wine, current_user)
     return rating.star.to_i
   end
 
+end
+
+def self.get_wine_ratings(wine_id)
+  ratings2 = self.where({ :wine_id => wine_id }).all
 end
 
 def self.get_average_wine_ratings(wine_ratings_arr)

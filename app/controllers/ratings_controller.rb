@@ -41,6 +41,10 @@ class RatingsController < ApplicationController
 
   def ratings
 
+    #binding.pry
+
+      @ratings = Rating.get_wine_ratings(params[:wine_id])
+
   end
 
   def top_rated

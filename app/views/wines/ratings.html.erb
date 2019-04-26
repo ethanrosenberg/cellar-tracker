@@ -1,6 +1,20 @@
 <br>
-<h1>Ratings</h1>
+<h1>Wine Chateau Ratings</h1>
 <br>
+
+
+<% @ratings.each do |rating| %>
+<% wine = Wine.find_by(params[:wine_id]) %>
+<div class="card w-75">
+  <div class="card-body">
+    <h3 class="card-title"><%= wine.name %> - <%= wine.vintage %></h3>
+    <p class="card-text"><h4>Rating: <%= rating.star %>/100</h4></p>
+    <a href="#" class="btn btn-primary">Button< /a>
+  </div>
+</div>
+<% end %>
+
+
 <table class="table">
   <thead>
     <tr>

@@ -107,12 +107,6 @@ class WinesController < ApplicationController
    end
   end
 
-  def ratings
-
-    @ratings = Rating.all
-
-  end
-
 
 
 
