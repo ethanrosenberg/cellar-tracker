@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :wines, only: [:index, :new, :create, :show, :edit, :update]
+  resources :ratings, only: [:show, :new, :create]
 
 
   get '/wines/:user_id/ratings', to: 'wines#ratings'

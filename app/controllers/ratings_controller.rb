@@ -15,6 +15,21 @@ class RatingsController < ApplicationController
     #@wine = Wine.
   end
 
+  def create
+
+    #binding.pry
+
+    @new_rating = Rating.create(star: rating_params[:star], user_id: current_user.id, wine_id: rating_params[:wine_id])
+
+    if @new_rating.save
+      redirect_to @new_rating, notice: "Successfully added a new rating!"
+    else
+      render 'new'
+    end
+
+
+  end
+
   def update
 
   end
@@ -63,4 +78,11 @@ class RatingsController < ApplicationController
 
 
   end
+
+
+    def rating_params
+      #params.require(:wine).permit(*args)
+      params.require(:rating).permit(:star, :user_id, :wine_id)
+
+    end
 end
