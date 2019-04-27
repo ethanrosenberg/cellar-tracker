@@ -19,13 +19,17 @@ class WinesController < ApplicationController
   end
 
   def wine_library
+    @searched = !params[:search].nil?
     if params[:search]
       @wines = Wine.search(params[:search])
     else
       @wines = Wine.all
     end
     #@wine_library = Wine.all
-    render 'library'
+    #render 'library'
+    render 'library', object: @searched
+
+    #render 'library', params[:search]
     #binding.pry
   end
 

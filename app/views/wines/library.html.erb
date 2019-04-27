@@ -1,7 +1,15 @@
+
+<% if params[:search] %>
+<h1>Search Results For: <%= params[:search] %></h1>
+<% else %>
 <br>
 <h1>All Wines</h1>
-<h5>Wines In Library <span class="badge badge-secondary"><%= Wine.all.size %></span></h5>
-
+<br>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
       <th scope="col">User Count</th>
@@ -16,6 +24,10 @@
       <td><%= wine.vintage %></td>
       <td><%= wine.users.size %></td>
       <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
+
+
+
+
     </tr>
       <% end %>
   </tbody>
