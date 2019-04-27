@@ -19,9 +19,10 @@ class RatingsController < ApplicationController
 
   def create
 
-#binding.pry
 
-    @rating = Rating.create(star: rating_params[:star], user_id: current_user.id, wine_id: rating_params[:wine_id])
+
+
+    @rating = Rating.create(star: rating_params[:star], note: rating_params[:note], user_id: current_user.id, wine_id: rating_params[:wine_id])
     @rating.save
     #binding.pry
     @wine = Wine.find(rating_params[:wine_id])
@@ -92,7 +93,7 @@ class RatingsController < ApplicationController
 
     def rating_params
       #params.require(:wine).permit(*args)
-      params.require(:rating).permit(:star, :wine_id)
+      params.require(:rating).permit(:star, :wine_id, :note)
 
     end
 end

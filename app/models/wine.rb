@@ -13,7 +13,7 @@ class Wine < ApplicationRecord
   validates :name, presence: true
   validates :vintage, presence: true
 
-  scope :search, ->(query) { where("name LIKE ?", "%#{query}%") }
+  scope :search, ->(query) { where("lower(name) LIKE ?", "%#{query.downcase}%") }
 
   def self.find_rating(wine_id, user_id)
     if Rating.find_by(wine_id: wine_id, user_id: user_id).nil?

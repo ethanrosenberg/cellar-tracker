@@ -2,6 +2,9 @@
 <h1>My Wines</h1>
 <h5>Wines In Your Collection <span class="badge badge-secondary"><%= current_user.wines.all.size %></span></h5>
 
+
+
+
 <table class="table">
   <thead>
     <tr>
@@ -16,12 +19,13 @@
   </thead>
   <tbody>
     <% @wines.each do |wine| %>
+    <% @rating = Rating.find_by(user_id: current_user.id, wine_id: wine.id)  %>
     <tr>
       <th scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
       <td><%= UsersWine.find_date_purchased(wine, current_user).strftime("%B %e, %Y") %></td>
-      <td><%= Rating.find_by(user_id: current_user.id, wine_id: wine.id).star %></td>
+      <td><%= @rating.blank? ? 0 : @rating.star %></td>
     <td><%= link_to "View Ratings", wine_ratings_path(wine) %></td>
     <td><%= link_to "View/Edit Wine", edit_wine_path(wine) %></td>
 

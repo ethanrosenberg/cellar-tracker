@@ -19,6 +19,7 @@ class WinesController < ApplicationController
   end
 
   def wine_library
+    #inding.pry
     @searched = !params[:search].nil?
     if params[:search]
       @wines = Wine.search(params[:search])
