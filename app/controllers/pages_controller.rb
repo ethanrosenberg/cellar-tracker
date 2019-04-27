@@ -8,7 +8,8 @@ class PagesController < ApplicationController
   def results
 
     if params[:search].blank?
-      redirect_to('/search', alert: "Empty field!")
+
+      redirect_to '/search'
     else
       @parameter = params[:search].downcase
 
@@ -18,6 +19,11 @@ class PagesController < ApplicationController
         if wine.name.downcase.include? @parameter.to_s
           @results << wine
         end
+      end
+      if @results
+        flash[:success] = "This works!"
+      else
+        flash[:success] = "No Results Found!"
       end
       #@results = Wine.where("name like ?", "%#{@parameter}%")
     end

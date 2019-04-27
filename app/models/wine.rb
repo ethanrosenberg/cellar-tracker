@@ -10,6 +10,10 @@ class Wine < ApplicationRecord
   #accepts_nested_attributes_for :ratings
 
   validates_uniqueness_of :name
+  validates :name, presence: true
+  validates :vintage, presence: true
+
+  scope :search, ->(query) { where("name LIKE ?", "%#{query}%") }
 
   def self.find_rating(wine_id, user_id)
     if Rating.find_by(wine_id: wine_id, user_id: user_id).nil?
@@ -22,8 +26,6 @@ class Wine < ApplicationRecord
   def ratings_attributes=(ratings_hash)
     ratings.build(star: ratings_hash[:star], user: ratings_hash[:user])
   end
-
-
 
   def self.top_rated_wines
    Rating.all.where("star >= 90").limit(25)

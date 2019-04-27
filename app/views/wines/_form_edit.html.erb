@@ -17,12 +17,7 @@
   <label>Vintage</label><br>
   <%= f.number_field :vintage %><br>
 </div>
-<div class="form-group">
-  <label>Rating</label><br>
-  <%= f.fields_for :ratings_attributes do |f| %>
-    <%= f.number_field :star, :value => Rating.get_rating(@wine, current_user)%>
-  <% end %><br>
-</div>
+
 
 <div class="form-group">
   <label>Purchase Date</label><br>

@@ -1,2 +1,3 @@
 <h3>Edit Wine</h3>
-<%= render 'form', wine: @wine %>
+<%= render 'form_edit', wine: @wine %><br>
+<%= button_to "Delete This Wine?", wine_path(@wine), :method => :delete, class:'btn btn-danger' %>

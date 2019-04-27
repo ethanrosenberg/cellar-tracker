@@ -2,10 +2,6 @@
 <h1>All Wines</h1>
 <h5>Wines In Library <span class="badge badge-secondary"><%= Wine.all.size %></span></h5>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
       <th scope="col">User Count</th>
@@ -13,17 +9,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @wine_library.each do |wine| %>
+    <% @wines.each do |wine| %>
     <tr>
       <th scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
       <td><%= wine.users.size %></td>
       <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
-
-
-
-
     </tr>
       <% end %>
   </tbody>

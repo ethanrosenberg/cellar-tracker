@@ -1,6 +1,6 @@
 class WinesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_wine, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:wine_library]
+  before_action :find_wine, only: [:show, :edit, :update]
 
   def index
     #binding.pry
@@ -19,7 +19,12 @@ class WinesController < ApplicationController
   end
 
   def wine_library
-    @wine_library = Wine.all
+    if params[:search]
+      @wines = Wine.search(params[:search])
+    else
+      @wines = Wine.all
+    end
+    #@wine_library = Wine.all
     render 'library'
     #binding.pry
   end
@@ -42,28 +47,22 @@ class WinesController < ApplicationController
       #ratings_attributes: {star: wine_params[:ratings_attributes][:star], user: current_user})
 
       #@new_wine = current_user.wines.build(name: wine_params[:name], vintage: wine_params[:vintage])
-      @new_wine = Wine.new(name: wine_params[:name], vintage: wine_params[:vintage])
-      @new_wine.save
-      @new_rating = Rating.new(star: wine_params[:ratings_attributes][:star], user_id: current_user.id, wine_id: @new_wine.id)
-      @new_rating.save
+      @wine = Wine.new(name: wine_params[:name], vintage: wine_params[:vintage])
+    #  binding.pry
+      if @wine.valid?
+        @wine.save
+        @new_rating = Rating.new(star: wine_params[:ratings_attributes][:star], user_id: current_user.id, wine_id: @wine.id)
+        @new_rating.save
+        @new_users_wine = UsersWine.new(purchase_date: @somedate, user_id: current_user.id, wine_id: @wine.id)
+        @new_users_wine.save
+        redirect_to @wine, notice: "Successfully added a new wine!"
 
-
-      #current_user.save
-
-
-      #@current_user_wine = UsersWine.find_by(user_id: current_user.id, wine_id: @new_wine.id).inspect
-      @new_users_wine = UsersWine.new(purchase_date: @somedate, user_id: current_user.id, wine_id: @new_wine.id)
-      @new_users_wine.save
+      else
+        render 'new'
+      end
       #@current_user_wine.update_attribute(user_id: current_user.id, purchase_date: @somedate)
       #@current_user_wine.update_attribute(:purchase_date, @somedate)
 
-
-
-    if @new_wine.save
-      redirect_to @new_wine, notice: "Successfully added a new wine!"
-    else
-      render 'new'
-    end
   end
 
   def edit
@@ -71,7 +70,7 @@ class WinesController < ApplicationController
   end
 
   def update
-
+#binding.pry
 
     @wine = Wine.find(params[:id])
 
@@ -90,7 +89,7 @@ class WinesController < ApplicationController
         @wine.save
 
         @current_rating = Rating.find_by(user_id: current_user.id, wine_id: @wine.id)
-        @current_rating.update_attribute(:star, wine_params[:ratings_attributes][:star])
+        #@current_rating.update_attribute(:star, wine_params[:ratings_attributes][:star])
 
         #binding.pry
 
@@ -105,6 +104,16 @@ class WinesController < ApplicationController
    else
      redirect_to edit_wine_path
    end
+  end
+
+  def destroy
+
+    if Wine.find(params[:id]).destroy
+      UsersWine.find_by(wine_id: params[:id], user_id: current_user.id).destroy
+      redirect_to wines_path
+    else
+      redirect_to wines_path
+    end
   end
 
 

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   #resources :ratings
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    #root "wines#search_wines"
+    root "pages#search"
 
     # '/search', to: 'wines#search'
     #g#et '/search', to: 'wines#search_wines'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :ratings, only: [:show, :new, :create]
   end
 
-  resources :wines, only: [:index, :new, :create, :show, :edit, :update]
+  resources :wines, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :ratings, only: [:show, :new, :create]
 
 
