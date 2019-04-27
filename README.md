@@ -1,24 +1,35 @@
-# README
+# CellarTracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CellarTracker is a Rails  application that helps you manage your wine inventory and also learn about the highest rated wines from other collectors and wine fans.
 
-Things you may want to cover:
+## Usage
+This project is currently run on your local host.
 
-* Ruby version
+Run:
+  $ bundle install
 
-* System dependencies
+Then:
+  $ rake db:create && rake db:migrate
 
-* Configuration
+To run on your local machine:
+  $ rails s
 
-* Database creation
+Copy the given host (for example "http://localhost:3000/") into the URL of your favorite web browser (preferable Chrome).
 
-* Database initialization
+Search for other highly rated wines that other users own or add your wine collection to the app and stay organized with all your wine adventures.
 
-* How to run the test suite
+## Development
 
-* Services (job queues, cache servers, search engines, etc.)
+After checking out the repo, you can run `rails c` for an interactive prompt that will allow you to experiment.
 
-* Deployment instructions
+## Contributing
 
-* ...
+Bug reports and pull requests are welcome on GitHub at https://github.com/ethanrosenberg/cellar-tracker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the CellarTracker project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ethanrosenberg/cellar-tracker/blob/master/CODE_OF_CONDUCT.md).
