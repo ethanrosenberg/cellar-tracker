@@ -16,6 +16,10 @@ class WinesController < ApplicationController
 
   def show
 
+    #binding.pry
+
+      render json: @wine.to_json
+
   end
 
   def wine_library

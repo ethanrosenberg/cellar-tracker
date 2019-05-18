@@ -5,6 +5,8 @@ ruby '2.6.1'
 
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
+gem 'active_model_serializers'
+
 gem 'bcrypt'
 gem 'pry', '~> 0.12.2'
 gem 'omniauth-github'
