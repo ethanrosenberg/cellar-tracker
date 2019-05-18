@@ -14,7 +14,8 @@
       <th scope="col">Purchase Date</th>
       <th scope="col">Rating</th>
       <th scope="col">View/Edit Rating</th>
-      <th scope="col">View/Edit Wine</th>
+      <th scope="col">View Wine</th>
+      <th scope="col">Edit Wine</th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +28,8 @@
       <td><%= UsersWine.find_date_purchased(wine, current_user).strftime("%B %e, %Y") %></td>
       <td><%= @rating.blank? ? 0 : @rating.star %></td>
     <td><%= link_to "View Ratings", wine_ratings_path(wine) %></td>
-    <td><%= link_to "View/Edit Wine", edit_wine_path(wine) %></td>
+    <td><%= link_to "View Wine", wine_path(wine) %></td>
+    <td><%= link_to "Edit Wine", edit_wine_path(wine) %></td>
 
 
       <% end %>
