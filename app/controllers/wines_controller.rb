@@ -18,7 +18,7 @@ class WinesController < ApplicationController
 
     #binding.pry
 
-      render json: @wine.to_json
+      render json: @wine
 
   end
 
