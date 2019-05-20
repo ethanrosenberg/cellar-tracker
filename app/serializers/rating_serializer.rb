@@ -1,3 +1,4 @@
 class RatingSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :star
+  belongs_to :wine
 end

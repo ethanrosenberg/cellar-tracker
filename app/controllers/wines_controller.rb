@@ -18,7 +18,12 @@ class WinesController < ApplicationController
 
     #binding.pry
 
-      render json: @wine
+    respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @wine }
+     end
+
+      #render json: @wine
 
   end
 

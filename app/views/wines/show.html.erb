@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "wine_show/wine_show" %>
+<% end %>
+
 
 <br>
 <h2><%= @wine.name %> - <%= @wine.vintage %></h2>
@@ -16,15 +20,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row"><%= @wine.id %></th>
-      <td><%= @wine.name %></td>
-      <td><%= @wine.vintage %></td>
-      <td><%= Rating.find_by(user_id: current_user.id, wine_id: @wine.id).star %></td>
-      <td><%= UsersWine.find_date_purchased(@wine, current_user).strftime("%B %e, %Y") %></td>
-    <td><%= link_to "View Rating", wine_rating_path(@wine, Wine.find_rating(@wine.id, current_user.id)) %></td>
-    <td><%= link_to "Edit Wine", edit_wine_path(@wine) %></td>
+    <tr class="wineInfo" data-id="<%= @wine.id %>">
 
+      <td><%= link_to "View Rating", wine_rating_path(@wine, Wine.find_rating(@wine.id, current_user.id)) %></td>
+      <td><%= link_to "Edit Wine", edit_wine_path(@wine) %></td>
     </tr>
+
+
+
   </tbody>
 </table>
