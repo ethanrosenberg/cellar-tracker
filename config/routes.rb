@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
     get '/wines/library', to: 'wines#wine_library'
 
+
+    #just added this route for js
+    #get '/wines/:wine_id/ratings/new', to: 'ratings#new'
+
   resources :wines, only: [:index, :new, :create, :show, :edit, :update] do
     resources :ratings, only: [:show, :new, :create]
   end

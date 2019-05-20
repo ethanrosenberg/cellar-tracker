@@ -19,7 +19,7 @@ class RatingsController < ApplicationController
 
   def create
 
-
+#binding.pry
 
 
     @rating = Rating.create(star: rating_params[:star], note: rating_params[:note], user_id: current_user.id, wine_id: rating_params[:wine_id])
@@ -28,10 +28,20 @@ class RatingsController < ApplicationController
     @wine = Wine.find(rating_params[:wine_id])
 
     if @rating.save
-      redirect_to wine_rating_path(@wine.id, @rating.id), notice: "Successfully added a new rating!"
+      #redirect_to wine_rating_path(@wine.id, @rating.id), notice: "Successfully added a new rating!"
+      render json: @rating
     else
       render 'new'
     end
+
+
+
+    #if @rating.save
+      # redirect_to wine_rating_path(@wine.id, @rating.id), notice: "Successfully added a new rating!"
+    #else
+      #ender 'new'
+    #end
+
 
 
   end

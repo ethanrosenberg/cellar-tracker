@@ -7,11 +7,15 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
 gem 'active_model_serializers'
 
+gem 'sprockets-rails'
+
 gem 'bcrypt'
 gem 'pry', '~> 0.12.2'
 gem 'omniauth-github'
 gem 'omniauth'
 gem 'dotenv-rails'
+
+gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
 

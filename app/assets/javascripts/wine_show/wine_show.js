@@ -7,6 +7,7 @@ Wine = function(id, name, vintage, rating, purchase_date) {
 
 };
 
+
 $(function() {
   id = $('.wineInfo').data('id');
   $.getJSON('/wines/' + id + '.json', function(data) {
@@ -26,6 +27,8 @@ $(function() {
     //.insertAfter
   });
 });
+
+
 
 
 Wine.prototype.niceDate = function() {

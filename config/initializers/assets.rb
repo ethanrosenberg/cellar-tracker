@@ -13,4 +13,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( wine_show/wine_show.js )
+#Rails.application.config.assets.precompile += %w( wine_show/wine_show.js, ratings.js )
+
+#Rails.application.config.assets.precompile += %w( wine_show/wine_show.js, ratings_new/ratings_new.js  )
+
+#Rails.application.config.assets.precompile += %w( ratings_new/ratings_new.js )
