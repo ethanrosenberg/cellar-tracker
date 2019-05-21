@@ -34,13 +34,19 @@ class WinesController < ApplicationController
       @wines = Wine.search(params[:search])
     else
       @wines = Wine.all
-    end
-    #@wine_library = Wine.all
-    #render 'library'
-    render 'library', object: @searched
 
-    #render 'library', params[:search]
-    #binding.pry
+    end
+
+
+    respond_to do |format|
+       format.html { render :library }
+       format.json { render json: @wines }
+     end
+
+
+    #render 'library', object: @searched
+
+
   end
 
   def new

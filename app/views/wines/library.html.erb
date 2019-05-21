@@ -19,7 +19,7 @@
   <tbody>
     <% @wines.each do |wine| %>
     <tr>
-      <th scope="row"><%= wine.id %></th>
+      <th class="wineInfo" scope="row"><%= wine.id %></th>
       <td><%= wine.name %></td>
       <td><%= wine.vintage %></td>
       <td><%= wine.users.size %></td>
