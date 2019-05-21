@@ -17,18 +17,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @wines.each do |wine| %>
-    <tr>
-      <th class="wineInfo" scope="row"><%= wine.id %></th>
-      <td><%= wine.name %></td>
-      <td><%= wine.vintage %></td>
-      <td><%= wine.users.size %></td>
-      <td><%= wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
 
+    <tr class="wineInfo">
 
 
 
     </tr>
-      <% end %>
+
   </tbody>
 </table>
