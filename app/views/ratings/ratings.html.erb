@@ -11,28 +11,9 @@
 <h5><%= link_to "Want to add a Rating?", new_wine_rating_path %></h5>
 <br>
 
-  <% @ratings.each do |rating| %>
+<div class="ratingResults">
 
-  <div class="card text-left">
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Rating - <%= rating.star %> points</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Last updated <%= rating.updated_at.strftime("%B %e, %Y") %></a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Notes</h5>
-    <p class="card-text"><%= rating.note %></p>
-  </div>
 </div>
-<br>
-
-
-<% end %>
 
 
 <script>
@@ -40,12 +21,14 @@
 $(".ratings.ratings").ready(function() {
 
 
-  function Rating (id, star, note, wine) {
+  function Rating (id, star, vintage, note, wine, last_updated_at) {
 
     this.id = id;
     this.star = star;
-    this.note = vintage;
+    this.vintage = vintage;
+    this.note = note;
     this.wine = wine;
+    this.last_updated_at = last_updated_at;
 
   //  this.render()}
   }
@@ -57,18 +40,14 @@ $(".ratings.ratings").ready(function() {
 
       ratings.forEach(row => {
 
-        console.log(row)
-
-
-
-       let rating = new Rating(row.id, row.star, row.vintage, row.wine)
+       let rating = new Rating(row.id, row.star, row.vintage, row.note, row.wine, row.updated_at)
 
        console.log(rating)
 
 
 
        //console.log(rating)
-      $('.wineTable').prepend(render(rating));
+      $('.ratingResults').prepend(render(rating));
 
     });
 
@@ -88,13 +67,13 @@ $(".ratings.ratings").ready(function() {
             <a class="nav-link active" href="#">Rating - ${rating.star} points</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Last updated </a>
+            <a class="nav-link disabled" href="#">Last updated ${cleanDate(rating.last_updated_at)}</a>
           </li>
         </ul>
       </div>
       <div class="card-body">
         <h5 class="card-title">Notes</h5>
-        <p class="card-text">RAting Here</p>
+        <p class="card-text">${rating.note}</p>
       </div>
     </div>
     <br>`
