@@ -7,8 +7,10 @@ Wine = function(id, name, vintage, rating) {
 };
 
 
-$(function() {
+
   //id = $('.wineInfo').data('id');
+
+  $(".wines.wine_library").ready(function() {
   $.getJSON('/wines/library.json', function(data) {
 
     data.forEach(row => {
@@ -47,7 +49,8 @@ $(function() {
     //return $(wineText).insertAfter( ".wineInfo" );
     //.insertAfter
   });
-});
+    });
+
 
 
 

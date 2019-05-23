@@ -1,4 +1,5 @@
 
+
 <% if params[:search] %>
 <h1>Search Results For: <%= params[:search] %></h1>
 <% else %>
@@ -12,17 +13,96 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
-      <th scope="col">User Count</th>
-      <th scope="col">Star Rating</th>
+      <th scope="col">All Ratings</th>
     </tr>
   </thead>
-  <tbody>
-
-    <tr class="wineInfo">
+  <tbody class="wineTable">
 
 
-
-    </tr>
 
   </tbody>
 </table>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    //window.alert("hello")
+  });
+
+$(".wines.wine_library").ready(function() {
+
+
+  function Wine (id, name, vintage, rating) {
+
+    this.id = id;
+    this.name = name;
+    this.vintage = vintage;
+    this.rating = rating;
+
+  //  this.render()}
+  }
+
+  //l//et id = document.querySelector('.wineInfo').dataset.id
+  fetch(`http://localhost:3000/wines/library.json`)
+    .then(res => res.json())
+    .then(wines => {
+
+      //console.log(typeof wines.toArray())
+
+
+
+      wines.forEach(row => {
+
+        console.log(row)
+
+      //  debugger
+
+       let wine_result = new Wine(row.id, row.name, row.vintage, processRatings(row.ratings), "")
+
+       console.log(wine_result)
+      $('.wineTable').prepend(render(wine_result));
+
+    });
+
+
+       console.log(wine_result)
+       console.log(wine)
+
+
+    })
+
+    function render(wine_result) {
+
+      var wineText = "";
+      //wine = new Wine(this.id, data.name, data.vintage, data.ratings[0]["star"], data.users_wines[0]["purchase_date"])
+      wineText = '<tr class="wineInfo">';
+      wineText += '<th scope="row">' + wine_result.id + '</th>';
+      wineText += '<td>' + wine_result.name+ '</td>';
+      wineText += '<td>' + wine_result.vintage + '</td>';
+      wineText += '<td>' + wine_result.rating + '</td>';
+      wineText += '</tr>';
+       return wineText
+
+      }
+    function cleanDate(date) {
+        return moment(date).format('ll');
+    }
+
+    function processRatings(ratings) {
+      if(ratings.length > 0) {
+                return ratings[0]["star"]
+      }
+
+      else {
+
+        return "Not Rated."
+
+      }
+    }
+
+})
+
+
+  //id = $('.wineInfo').data('id');
+
+
+    </script>

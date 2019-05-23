@@ -27,3 +27,56 @@
 
   </tbody>
 </table>
+
+<script>
+
+$(".wines.show").ready(function() {
+
+  function Wine (id, name, vintage, rating, date) {
+
+    this.id = id;
+    this.name = name;
+    this.vintage = vintage;
+    this.rating = rating;
+    this.date = cleanDate(date);
+
+
+  //  this.render()}
+  }
+
+  let id = document.querySelector('.wineInfo').dataset.id
+  fetch(`http://localhost:3000/wines/${id}.json`)
+    .then(res => res.json())
+    .then(wine => {
+
+      let wine_result = new Wine(wine.id, wine.name, wine.vintage, wine.ratings[0]["star"], wine.users_wines[0].purchase_date)
+      $('.wineInfo').prepend(render(wine_result));
+       console.log(wine_result)
+       console.log(wine)
+
+
+    })
+
+    function render(wine_result) {
+
+      var wineText;
+      //wine = new Wine(this.id, data.name, data.vintage, data.ratings[0]["star"], data.users_wines[0]["purchase_date"])
+      wineText = '<th scope="row">' + wine_result.id + '</th>';
+      wineText += '<td>' + wine_result.name+ '</td>';
+      wineText += '<td>' + wine_result.vintage + '</td>';
+      wineText += '<td>' + wine_result.rating + '</td>';
+      wineText += '<td>' + wine_result.date + '</td>';
+       return wineText
+
+      }
+    function cleanDate(date) {
+        return moment(date).format('ll');
+    }
+
+})
+
+
+  //id = $('.wineInfo').data('id');
+
+
+    </script>

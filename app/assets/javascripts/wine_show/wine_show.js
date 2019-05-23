@@ -1,14 +1,39 @@
-Wine = function(id, name, vintage, rating, purchase_date) {
+class Wine = {
+  constructor(id, name, vintage, rating, date) {
   this.id = id;
   this.name = name;
   this.vintage = vintage;
   this.rating = rating;
-  this.purchase_date = purchase_date;
+  this.date = date;
 
-};
+  console.log(this.date)
+
+  this.render()
+
+}
+
+console.log("hello")
+render() {
 
 
-$(function() {
+  var wineText;
+  //wine = new Wine(this.id, data.name, data.vintage, data.ratings[0]["star"], data.users_wines[0]["purchase_date"])
+  wineText = '<th scope="row">' + this.id + '</th>';
+  wineText += '<td>' + this.name+ '</td>';
+  wineText += '<td>' + this.vintage + '</td>';
+  wineText += '<td>' + this.rating + '</td>';
+  wineText += '<td>' + this.date + '</td>';
+
+   //console.log(wineText)
+    $('.wineInfo').prependChild(partCard);
+
+  }
+
+
+  /*
+
+$(".wines.show").ready(function() {
+  //return unless $(".wines.show").length > 0
   id = $('.wineInfo').data('id');
   $.getJSON('/wines/' + id + '.json', function(data) {
 
@@ -29,7 +54,7 @@ $(function() {
 });
 
 
-
+*/
 
 Wine.prototype.niceDate = function() {
   //console.log(this.purchase_date)

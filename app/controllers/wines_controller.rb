@@ -16,7 +16,7 @@ class WinesController < ApplicationController
 
   def show
 
-    #binding.pry
+
 
     respond_to do |format|
        format.html { render :show }
@@ -28,7 +28,7 @@ class WinesController < ApplicationController
   end
 
   def wine_library
-    #inding.pry
+
     @searched = !params[:search].nil?
     if params[:search]
       @wines = Wine.search(params[:search])
