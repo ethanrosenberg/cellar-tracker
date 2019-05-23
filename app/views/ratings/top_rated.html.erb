@@ -29,3 +29,92 @@
       <% end %>
   </tbody>
 </table>
+
+
+
+<script>
+
+$(".wines.top_rated").ready(function() {
+
+
+  function Rating (id, star, vintage, note, wine, last_updated_at) {
+
+    this.id = id;
+    this.star = star;
+    this.vintage = vintage;
+    this.note = note;
+    this.wine = wine;
+    this.last_updated_at = last_updated_at;
+
+  //  this.render()}
+  }
+
+ let id = document.querySelector('.wineClass').dataset.id;
+  fetch(`http://localhost:3000/wines/${id}/ratings.json`)
+    .then(res => res.json())
+    .then(ratings => {
+
+      ratings.forEach(row => {
+
+       let rating = new Rating(row.id, row.star, row.vintage, row.note, row.wine, row.updated_at)
+
+       console.log(rating)
+
+
+
+       //console.log(rating)
+      $('.ratingResults').prepend(render(rating));
+
+    });
+
+
+
+
+    })
+
+    function render(rating) {
+
+      var wineText = "";
+
+      wineText = `<div class="card text-left">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Rating - ${rating.star} points</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Last updated ${cleanDate(rating.last_updated_at)}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Notes</h5>
+        <p class="card-text">${rating.note}</p>
+      </div>
+    </div>
+    <br>`
+
+
+       return wineText
+
+      }
+    function cleanDate(date) {
+        return moment(date).format('ll');
+    }
+
+    function processRatings(ratings) {
+      if(ratings.length > 0) {
+                return ratings[0]["star"]
+      }
+      else {
+        return "Not Rated."
+      }
+    }
+
+})
+
+
+  //id = $('.wineInfo').data('id');
+
+
+    </script>

@@ -23,9 +23,14 @@ def self.get_wine_ratings(wine_id)
 end
 
 def self.get_average_wine_ratings(wine_ratings_arr)
+  #binding.pry
   sum = 0
   wine_ratings_arr.each do |rating|
+    if rating.nil?
+      sum+= 0
+    else
     sum += rating
+    end
   end
 #binding.pry
   sum / wine_ratings_arr.size

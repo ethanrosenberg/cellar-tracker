@@ -75,6 +75,11 @@ class RatingsController < ApplicationController
 
     @wine_ratings = Wine.top_rated_wines
 
+    respond_to do |format|
+       format.html { render :top_rated }
+       format.json { render json: @wine_ratings }
+     end
+
 
     #@wine_ids.each do |wine_id|
     #  Wine.find_by(id: wine_id).
