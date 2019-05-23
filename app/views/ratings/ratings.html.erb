@@ -7,7 +7,7 @@
 
 <% wine = Wine.find_by(id: params[:wine_id]) %>
 <br>
-<h1><%= wine.name %> - <%= wine.vintage %> Ratings</h1>
+<h1 class="wineClass" data-id="<%= wine.id %>"><%= wine.name %> - <%= wine.vintage %> Ratings</h1>
 <h5><%= link_to "Want to add a Rating?", new_wine_rating_path %></h5>
 <br>
 
@@ -33,3 +33,93 @@
 
 
 <% end %>
+
+
+<script>
+
+$(".ratings.ratings").ready(function() {
+
+
+  function Rating (id, star, note, wine) {
+
+    this.id = id;
+    this.star = star;
+    this.note = vintage;
+    this.wine = wine;
+
+  //  this.render()}
+  }
+
+ let id = document.querySelector('.wineClass').dataset.id;
+  fetch(`http://localhost:3000/wines/${id}/ratings.json`)
+    .then(res => res.json())
+    .then(ratings => {
+
+      ratings.forEach(row => {
+
+        console.log(row)
+
+
+
+       let rating = new Rating(row.id, row.star, row.vintage, row.wine)
+
+       console.log(rating)
+
+
+
+       //console.log(rating)
+      $('.wineTable').prepend(render(rating));
+
+    });
+
+
+
+
+    })
+
+    function render(rating) {
+
+      var wineText = "";
+
+      wineText = `<div class="card text-left">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Rating - ${rating.star} points</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Last updated </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Notes</h5>
+        <p class="card-text">RAting Here</p>
+      </div>
+    </div>
+    <br>`
+
+
+       return wineText
+
+      }
+    function cleanDate(date) {
+        return moment(date).format('ll');
+    }
+
+    function processRatings(ratings) {
+      if(ratings.length > 0) {
+                return ratings[0]["star"]
+      }
+      else {
+        return "Not Rated."
+      }
+    }
+
+})
+
+
+  //id = $('.wineInfo').data('id');
+
+
+    </script>
