@@ -25,7 +25,6 @@
 </style>
 
 
-
 <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
                             <%= form_tag("/wines/library", method: "get", class: "card card-sm") do %>
@@ -46,5 +45,25 @@
                                 </div>
                             <% end %>
                         </div>
+
+
+
                         <!--end of col-->
                     </div>
+                    <br>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Vintage</th>
+                          <th scope="col">Average Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody class="wineTable">
+
+
+
+                      </tbody>
+                    </table>

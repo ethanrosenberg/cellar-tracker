@@ -30,7 +30,6 @@
 
 $(".wines.wine_library").ready(function() {
 
-
   function Wine (id, name, vintage, rating) {
 
     this.id = id;
@@ -38,7 +37,6 @@ $(".wines.wine_library").ready(function() {
     this.vintage = vintage;
     this.rating = rating;
 
-  //  this.render()}
   }
 
   //l//et id = document.querySelector('.wineInfo').dataset.id
@@ -46,15 +44,8 @@ $(".wines.wine_library").ready(function() {
     .then(res => res.json())
     .then(wines => {
 
-      //console.log(typeof wines.toArray())
-
-
-
       wines.forEach(row => {
 
-        console.log(row)
-
-      //  debugger
 
        let wine_result = new Wine(row.id, row.name, row.vintage, getRating(row.ratings), "")
 
@@ -62,11 +53,6 @@ $(".wines.wine_library").ready(function() {
       $('.wineTable').prepend(render(wine_result));
 
     });
-
-
-       console.log(wine_result)
-       console.log(wine)
-
 
     })
 
@@ -91,11 +77,8 @@ $(".wines.wine_library").ready(function() {
       if(ratings.length > 0) {
                 return ratings[0]["star"]
       }
-
       else {
-
         return "Not Rated."
-
       }
     }
 
@@ -118,9 +101,5 @@ $(".wines.wine_library").ready(function() {
 
 
 })
-
-
-  //id = $('.wineInfo').data('id');
-
 
     </script>
