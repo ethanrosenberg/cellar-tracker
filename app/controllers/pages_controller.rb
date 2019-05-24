@@ -11,6 +11,8 @@ class PagesController < ApplicationController
 
       redirect_to '/search'
     else
+
+      binding.pry
       @parameter = params[:search].downcase
 
       @results = []
@@ -27,6 +29,12 @@ class PagesController < ApplicationController
       end
       #@results = Wine.where("name like ?", "%#{@parameter}%")
     end
+
+    respond_to do |format|
+       format.html { render :search }
+       format.json { render json: @results }
+     end
+
   end
 
 

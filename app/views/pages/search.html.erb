@@ -61,9 +61,81 @@
                           <th scope="col">Average Rating</th>
                         </tr>
                       </thead>
-                      <tbody class="wineTable">
+                      <tbody class="resultsTable">
 
 
 
                       </tbody>
                     </table>
+
+
+<script>
+
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      //window.alert(this.action);
+
+      //var values = $(this).serialize();
+      var values = $(this).serializeArray();
+
+      let search_term = values[1]["value"];
+
+      //debugger
+
+
+
+        function Wine (id, name, vintage, rating) {
+
+          this.id = id;
+          this.name = name;
+          this.vintage = vintage;
+          this.rating = rating;
+
+        }
+
+        //l//et id = document.querySelector('.wineInfo').dataset.id
+        fetch(`http://localhost:3000/wines/results.json`)
+          .then(res => res.json())
+          .then(wines => {
+
+            wines.forEach(row => {
+
+              //debugger
+
+             let wine_result = new Wine(row.id, row.name, row.vintage, "2", "")
+
+             console.log(wine_result)
+            $('.resultsTable').prepend(render(wine_result));
+
+          });
+
+          })
+
+          function render(wine_result) {
+
+            var wineText = "";
+            //wine = new Wine(this.id, data.name, data.vintage, data.ratings[0]["star"], data.users_wines[0]["purchase_date"])
+            wineText = '<tr class="wineInfo">';
+            wineText += '<th scope="row">' + wine_result.id + '</th>';
+            wineText += '<td>' + wine_result.name+ '</td>';
+            wineText += '<td>' + wine_result.vintage + '</td>';
+            wineText += '<td>' + wine_result.rating + '</td>';
+            wineText += '</tr>';
+             return wineText
+
+            }
+
+
+      })
+
+
+
+
+
+
+  });
+
+
+  </script>
