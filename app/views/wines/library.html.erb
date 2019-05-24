@@ -13,7 +13,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
-      <th scope="col">All Ratings</th>
+      <th scope="col">Average Rating</th>
     </tr>
   </thead>
   <tbody class="wineTable">
@@ -56,7 +56,7 @@ $(".wines.wine_library").ready(function() {
 
       //  debugger
 
-       let wine_result = new Wine(row.id, row.name, row.vintage, processRatings(row.ratings), "")
+       let wine_result = new Wine(row.id, row.name, row.vintage, getRating(row.ratings), "")
 
        console.log(wine_result)
       $('.wineTable').prepend(render(wine_result));
@@ -98,6 +98,24 @@ $(".wines.wine_library").ready(function() {
 
       }
     }
+
+    function getRating(array) {
+      if(array.length > 0) {
+
+        var total = 0;
+        for(var i = 0; i < array.length; i++) {
+            total += array[i]["star"];
+        }
+
+        var avg = total / array.length;
+        return avg;
+      } else {
+        return "No Rating.";
+      }
+
+
+    }
+
 
 })
 

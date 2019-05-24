@@ -7,26 +7,10 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Vintage</th>
-      <th scope="col">User Count</th>
-      <th scope="col">Average Rating</th>
     </tr>
   </thead>
-  <tbody>
-    <% @wine_ratings.each do |rating| %>
-    <% wine = Wine.find_by(id: rating.wine_id) %>
-    <% if !wine.nil? %>
-    <tr>
-      <th scope="row"><%= wine.id %></th>
-      <td><%= wine.name %></td>
-      <td><%= wine.vintage %></td>
-      <td><%= wine.users.size %></td>
-      <% wine_ratings_arr = wine.ratings.map {|rating| rating.star } %>
+  <tbody class="topRated">
 
-      <td><%= Rating.get_average_wine_ratings(wine_ratings_arr) %></td>
-      <td><% wine.ratings.map {|rating| rating.star.to_s }.join(", ") %></td>
-    </tr>
-    <% end %>
-      <% end %>
   </tbody>
 </table>
 
@@ -34,68 +18,56 @@
 
 <script>
 
-$(".wines.top_rated").ready(function() {
+$(".ratings.top_rated").ready(function() {
 
 
-  function Rating (id, star, vintage, note, wine, last_updated_at) {
+  function Rating (id, vintage, name) {
 
     this.id = id;
-    this.star = star;
     this.vintage = vintage;
-    this.note = note;
-    this.wine = wine;
-    this.last_updated_at = last_updated_at;
+    this.name = name;
+    //this.number_of_ratings = number_of_ratings;
 
   //  this.render()}
   }
 
- let id = document.querySelector('.wineClass').dataset.id;
-  fetch(`http://localhost:3000/wines/${id}/ratings.json`)
+
+  fetch(`http://localhost:3000/wines/top_rated.json`)
     .then(res => res.json())
     .then(ratings => {
 
       ratings.forEach(row => {
 
-       let rating = new Rating(row.id, row.star, row.vintage, row.note, row.wine, row.updated_at)
+        //debugger
+
+       let rating = new Rating(row.id, row.vintage, row.wine.name)
 
        console.log(rating)
 
 
 
        //console.log(rating)
-      $('.ratingResults').prepend(render(rating));
+      $('.topRated').prepend(render(rating));
 
     });
 
 
 
+debugger
 
     })
 
     function render(rating) {
 
       var wineText = "";
-
-      wineText = `<div class="card text-left">
-      <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Rating - ${rating.star} points</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Last updated ${cleanDate(rating.last_updated_at)}</a>
-          </li>
-        </ul>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Notes</h5>
-        <p class="card-text">${rating.note}</p>
-      </div>
-    </div>
-    <br>`
-
-
+      //wine = new Wine(this.id, data.name, data.vintage, data.ratings[0]["star"], data.users_wines[0]["purchase_date"])
+      wineText = '<tr class="wineInfo">';
+      wineText += '<th scope="row">' + rating.id + '</th>';
+      wineText += '<td>' + rating.name+ '</td>';
+      wineText += '<td>' + rating.vintage + '</td>';
+      wineText += '</tr>';
        return wineText
+
 
       }
     function cleanDate(date) {
@@ -110,6 +82,7 @@ $(".wines.top_rated").ready(function() {
         return "Not Rated."
       }
     }
+
 
 })
 
