@@ -15,10 +15,60 @@
   <label>Notes</label><br>
   <%= f.text_area :note %>
 </div>
-  <%= f.submit "Add New Rating", class:'btn btn-primary' %>
+  <%= f.submit "Add New Rating", class:'btn btn-primary', return: false%>
 <% end %>
-
 
 <div class="new_rating">
 
 </div>
+
+<script>
+
+
+
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      //window.alert(this.action);
+
+      var values = $(this).serialize();
+
+      var posting = $.post(this.action, values);
+
+      posting.done(function(data) {
+
+        console.log(data)
+        const newrating = $('.new_rating')
+
+        let content = (`<br><div class="card">
+          <div class="card-header">
+            Successfully Added!
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">${data.wine.name}</h5>
+            <p class="card-text">Notez: ${data.note}</p>
+            <a href="#" class="btn btn-primary">Rating - ${data.star}/100</a>
+          </div>
+        </div>`);
+
+       //  let newcontent = "<h1>" + data.note "</h2>";
+
+        //new_rating.append(content);
+        //new_rating.parent().append(content);
+
+
+        //var r = $(".new_rating");
+        //var r = $(".new_rating").parent();
+        //r.append(content);
+
+        $('form').trigger("reset");
+
+      });
+
+
+
+
+    });
+  });
+
+  </script>

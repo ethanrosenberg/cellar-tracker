@@ -18,9 +18,10 @@
   </thead>
   <tbody>
     <tr class="wineInfo" data-id="<%= @wine.id %>">
-
+    
       <td><%= link_to "View Rating", wine_rating_path(@wine, Wine.find_rating(@wine.id, current_user.id)) %></td>
       <td><%= link_to "Edit Wine", edit_wine_path(@wine) %></td>
+
     </tr>
 
 
@@ -50,6 +51,7 @@ $(".wines.show").ready(function() {
     .then(wine => {
 
       let wine_result = new Wine(wine.id, wine.name, wine.vintage, wine.ratings[0]["star"], wine.users_wines[0].purchase_date)
+      //$( ".wineInfo" ).empty();
       $('.wineInfo').prepend(render(wine_result));
        console.log(wine_result)
        console.log(wine)

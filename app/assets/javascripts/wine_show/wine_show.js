@@ -1,4 +1,4 @@
-class Wine = {
+class Wine {
   constructor(id, name, vintage, rating, date) {
   this.id = id;
   this.name = name;
@@ -12,7 +12,7 @@ class Wine = {
 
 }
 
-console.log("hello")
+
 render() {
 
 
@@ -55,8 +55,8 @@ $(".wines.show").ready(function() {
 
 
 */
-
-Wine.prototype.niceDate = function() {
+}
+Wine.prototype.render = function() {
   //console.log(this.purchase_date)
   //d = Date.parse(this.purchase_date)
   console.log(this.purchase_date)
